@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="assets/css/reset.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+   <title>Welcome</title>
+
+</head>
+
+<body>
+
+   <header class="margin-left">
+      <div>
+        <a href="welcome.html"><img id="imgLogo" src="./assets/img/epicode_logo.png" alt="Logo Epicode"></a>
+      </div>
+   </header>
+
+   <main class="margin-left">
+
+      <div>
+         <h1> Welcome to <b> your exam </b> </h1>
+      </div>
+
+      <div>
+         <h3>Instructions</h3>
+         <p class="paragrafo-welcome">
+            We don't expext most engineers to know the answers to all of these questions, so don't worry if you're unsure
+            of a few of them
+         </p>
+      </div>
+
+      <div>
+         <ul>
+            <li>Each question is <b>timed</b> and can only be <b>answered once</b> .</li>
+            <li>Changing browser tab or opening other windows will invalidate invalidate the question.</li>
+            <li>This exam will take approx. <b>0-5 minutes</b>.</li>
+         </ul>
+      </div>
+
+      <div class="form-wrapper">
+         <form action="quiz.html" onsubmit="return validateForm()">
+            <label class="checkbox-wrapper">
+            <input id="checkbox" type="checkbox">
+            <span class="checkmark"></span>
+               <b>I promise to answer myself without help form anyone</b>
+            </label>
+            <button type="submit" id="button" class="welcomeButton">PROCEED</button>
+            <div id="error-message" class="error-label" style="display:none;">Seleziona la checkbox prima di inviare il modulo.</div>
+
+         </form>
+      </div>
+
+   </main>
+   <script src="assets/js/welcome.js"></script>
+</body>
+
+</html>
