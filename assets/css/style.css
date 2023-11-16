@@ -124,6 +124,10 @@ li {
 .checkbox-wrapper input:checked ~ .checkmark::after {
    display: block;
 }
+.error-label {
+   font-weight: bold;
+   color: #880404;
+ }
 
 .fluoButton {
    margin-top: 2rem;

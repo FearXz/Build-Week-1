@@ -41,17 +41,20 @@
       </div>
 
       <div class="form-wrapper">
-         <form action="quiz.html">
+         <form action="quiz.html" onsubmit="return validateForm()">
             <label class="checkbox-wrapper">
-            <input id="checkbox" type="checkbox" required>
+            <input id="checkbox" type="checkbox">
             <span class="checkmark"></span>
                <b>I promise to answer myself without help form anyone</b>
             </label>
             <button type="submit" id="button" class="welcomeButton">PROCEED</button>
+            <div id="error-message" class="error-label" style="display:none;">Seleziona la checkbox prima di inviare il modulo.</div>
+
          </form>
       </div>
 
    </main>
+   <script src="assets/js/welcome.js"></script>
 </body>
 
 </html>
