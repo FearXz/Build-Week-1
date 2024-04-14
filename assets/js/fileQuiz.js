@@ -35,12 +35,7 @@ const questions = [
     difficulty: "easy",
     question: "What does CPU stand for?",
     correct_answer: "Central Processing Unit",
-    allAnswers: [
-      "Central Process Unit",
-      "Computer Personal Unit",
-      "Central Processor Unit",
-      "Central Processing Unit",
-    ],
+    allAnswers: ["Central Process Unit", "Computer Personal Unit", "Central Processor Unit", "Central Processing Unit"],
   },
   {
     category: "Science: Computers",
@@ -57,25 +52,23 @@ const questions = [
     difficulty: "easy",
     question: "The logo for Snapchat is a Bell.",
     correct_answer: "False",
-    allAnswers: ["True", "False",],
+    allAnswers: ["True", "False"],
   },
   {
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
-    question:
-      "Pointers were not used in the original C programming language; they were added later on in C++.",
+    question: "Pointers were not used in the original C programming language; they were added later on in C++.",
     correct_answer: "False",
-    allAnswers: ["True", "False",],
+    allAnswers: ["True", "False"],
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question:
-      "What is the most preferred image format used for logos in the Wikimedia database?",
+    question: "What is the most preferred image format used for logos in the Wikimedia database?",
     correct_answer: ".svg",
-    allAnswers: [".svg", ".png", ".jpeg", ".gif",],
+    allAnswers: [".svg", ".png", ".jpeg", ".gif"],
   },
   {
     category: "Science: Computers",
@@ -83,26 +76,15 @@ const questions = [
     difficulty: "easy",
     question: "In web design, what does CSS stand for?",
     correct_answer: "Cascading Style Sheet",
-    allAnswers: [
-      "Counter Strike: Source",
-      "Cascading Style Sheet",
-      "Corrective Style Sheet",
-      "Computer Style Sheet",
-    ],
+    allAnswers: ["Counter Strike: Source", "Cascading Style Sheet", "Corrective Style Sheet", "Computer Style Sheet"],
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question:
-      "What is the code name for the mobile operating system Android 7.0?",
+    question: "What is the code name for the mobile operating system Android 7.0?",
     correct_answer: "Nougat",
-    allAnswers: [
-      "Ice Cream Sandwich",
-      "Nougat",
-      "Jelly Bean",
-      "Marshmallow",
-    ],
+    allAnswers: ["Ice Cream Sandwich", "Nougat", "Jelly Bean", "Marshmallow"],
   },
   {
     category: "Science: Computers",
@@ -118,16 +100,15 @@ const questions = [
     difficulty: "easy",
     question: "Linux was first created as an alternative to Windows XP.",
     correct_answer: "False",
-    allAnswers: ["True", "False",],
+    allAnswers: ["True", "False"],
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question:
-      "Which programming language shares its name with an island in Indonesia?",
+    question: "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
-    allAnswers: ["Python", "C", "Jakarta", "Java",],
+    allAnswers: ["Python", "C", "Jakarta", "Java"],
   },
 ];
 
@@ -136,19 +117,19 @@ function generateQuestions() {
   agganciato il wrapper che conterrà il titolo della domanda generata 
   e crea un altro container che conterrà le risposte possibili
   */
-  let wrapper = document.getElementById('questionWrapper');
+  let wrapper = document.getElementById("questionWrapper");
   wrapper.innerHTML = `
   <div id="question">
     <h2 id="titoloDomanda">${randomQuestions[currentQuestion].question}</h2>
   </div>
   <div id="answer" class="align-center"></div>
-  `;                        // viene utilizzato l'array randomQuestion dichiarato sotto per fare in modo che le domande vengano generate casualmente
+  `; // viene utilizzato l'array randomQuestion dichiarato sotto per fare in modo che le domande vengano generate casualmente
   /* 
   aggancio il container precedentemente generato
   tramite il for loop partendo da indice = 0, ovvero currentQuestion
   abbiamo ciclato per tutta la lunghezza del array allAnswer all'interno dell'oggetto questions
   */
-  let containerQuestion = document.getElementById('answer');
+  let containerQuestion = document.getElementById("answer");
   for (let i = 0; i < randomQuestions[currentQuestion].allAnswers.length; i++) {
     containerQuestion.innerHTML += `
     <div class="option">${randomQuestions[currentQuestion].allAnswers[i]}</div>
@@ -159,20 +140,19 @@ function generateQuestions() {
   */
   wrapper.innerHTML += `
   <div id="currentQuestion">Domanda ${currentQuestion + 1} <span>/ 10</span></div>
-  `
+  `;
   /* 
   prendiamo ogni singola opzione tra le quattro, aggiungiamo un eventListener che al click triggera la funzione nextQuestion 
   */
-  let option = document.getElementsByClassName('option');
+  let option = document.getElementsByClassName("option");
 
   for (let i = 0; i < option.length; i++) {
     let element = option[i];
     element.addEventListener("click", () => {
       nextQuestion(element.innerHTML);
-      
-    })
+    });
   }
-};
+}
 
 /* 
 questa funzione controlla se l'array delle risposte è più corto dell'array che contiene tutte le domande
@@ -183,24 +163,23 @@ se quella condizione è falsa e quindi l'utente ha risposto a tutte le domande i
 e vengono rimossi tutti gli elementi al'interno del main, per creare spazio alla pagina del risultato (tramite funzione result)  
 */
 let nextQuestion = function (string) {
-  if (userAnswers.length < randomQuestions.length-1) {
-  userAnswers.push(string);
-  console.log(userAnswers);
-  currentQuestion += 1;
-  generateQuestions(currentQuestion, userAnswers);
-  resetTimer();
-}
-  else {
-  userAnswers.push(string);
-  console.log(userAnswers);
-  stopTimer();
-  let wrapper = document.getElementById('questionWrapper');
-  wrapper.remove();
-  let orologio = document.getElementById('timerWrapper')
-  orologio.remove();
-  let progressBar = document.getElementById('progressBar');
-  progressBar.remove();
-  result();
+  if (userAnswers.length < randomQuestions.length - 1) {
+    userAnswers.push(string);
+    console.log(userAnswers);
+    currentQuestion += 1;
+    generateQuestions(currentQuestion, userAnswers);
+    resetTimer();
+  } else {
+    userAnswers.push(string);
+    console.log(userAnswers);
+    stopTimer();
+    let wrapper = document.getElementById("questionWrapper");
+    wrapper.remove();
+    let orologio = document.getElementById("timerWrapper");
+    orologio.remove();
+    let progressBar = document.getElementById("progressBar");
+    progressBar.remove();
+    result();
   }
 };
 
@@ -210,23 +189,23 @@ se la risposta pushata nell'array userAnswers è uguale a una delle risposte con
 il valore della variabile rightAnswers incrementa di uno, altrimenti incrementerà quello di wrongAnswers
 
 */
-function result () {
-  let main = document.getElementById('main');
+function result() {
+  let main = document.getElementById("main");
   let rightAnswers = 0;
   let wrongAnswers = 0;
-  for(let i=0; i < randomQuestions.length; i++) {
-    if (randomQuestions[i].correct_answer == userAnswers[i]){
-      rightAnswers+=1;
+  for (let i = 0; i < randomQuestions.length; i++) {
+    if (randomQuestions[i].correct_answer == userAnswers[i]) {
+      rightAnswers += 1;
     } else {
-      wrongAnswers+=1;
+      wrongAnswers += 1;
     }
   }
 
-/*
+  /*
 dopodiché viene stabilito, tramite template literal, il nuovo HTML che dovrà avere la pagina del risultato,
 inserendo anche il calcolo in percentuale delle risposte giuste/sbagliate
 */
-  main.innerHTML =`
+  main.innerHTML = `
 <div>
   <h2 class="evidenziato">Results</h2> 
   <p class="sottotitolo">The summary of your answer: </p> 
@@ -235,7 +214,7 @@ inserendo anche il calcolo in percentuale delle risposte giuste/sbagliate
 <div id="flexContainer">
 
   <div class="Answers align-left">
-   Correct <br> <span class="evidenziato"> ${(rightAnswers / randomQuestions.length)*100}% </span>
+   Correct <br> <span class="evidenziato"> ${(rightAnswers / randomQuestions.length) * 100}% </span>
    <p class="sottotitoletto"> ${rightAnswers}/${randomQuestions.length} questions </p> 
   </div>
 
@@ -245,7 +224,7 @@ inserendo anche il calcolo in percentuale delle risposte giuste/sbagliate
   </div>
 
   <div class="Answers align-right">
-    Wrong <br> <span class="evidenziato"> ${(wrongAnswers / randomQuestions.length)*100}% </span>
+    Wrong <br> <span class="evidenziato"> ${(wrongAnswers / randomQuestions.length) * 100}% </span>
     <p class="sottotitoletto"> ${wrongAnswers}/${randomQuestions.length} questions </p> 
   </div>
 
@@ -257,36 +236,38 @@ inserendo anche il calcolo in percentuale delle risposte giuste/sbagliate
   </form>
 </div>
   `;
-/*
+  /*
 qui viene dichiarata una variabile alla quale verrà assegnato un valore differente a seconda del numero di risposte esatte,
 se sono maggiori o uguali a 5 verrà mostrato un messaggio, altrimenti un altro. La variabile testo che contiene i messaggi 
 sarà utilizzata come valore del div con Id risultatoTestuale precedentemente generato con il template literal. 
 */
-  let testo; 
+  let testo;
 
-  if ( rightAnswers >= 5 ) {
-    testo =` <span class="colorato"> <span class="resultDonut"> Congratulations!</span> you passed the exam </span>`
+  if (rightAnswers >= 5) {
+    testo = ` <span class="colorato"> <span class="resultDonut"> Congratulations!</span> you passed the exam </span>`;
   } else {
-    testo = ` <span class="colorato"> <span class="resultDonut"> Sorry! </span> <br> you didn't pass the exam </span>`
+    testo = ` <span class="colorato"> <span class="resultDonut"> Sorry! </span> <br> you didn't pass the exam </span>`;
   }
 
-  const textResult = document.getElementById("textResult"); 
+  const textResult = document.getElementById("textResult");
   textResult.innerHTML = testo;
 
-  donutChart(wrongAnswers , rightAnswers ) 
+  donutChart(wrongAnswers, rightAnswers);
 }
 
 /*
 La funzione startTimer imposta un intervallo di tempo di 1000 millisecondi, inizializzando appunto il timer
 */
-function startTimer () {
-  timerInterval = setInterval(function() {updateTimer();}, 1000);
+function startTimer() {
+  timerInterval = setInterval(function () {
+    updateTimer();
+  }, 1000);
 }
 
 /*
 La funzione stopTimer dà il comando contrario (clearInterval), quindi ferma il timer
 */
-function stopTimer () {
+function stopTimer() {
   clearInterval(timerInterval);
 }
 
@@ -297,12 +278,13 @@ parametro null invece di string, perciò verrà pushato un valore null nell'arra
 stata effettuata alcuna scelta da parte dell'utente.
 */
 function updateTimer() {
-
   reloadTimerHtml();
-  if (timerSeconds == 0) {nextQuestion(null);}
-  else {timerSeconds--;}
-  
-};
+  if (timerSeconds == 0) {
+    nextQuestion(null);
+  } else {
+    timerSeconds--;
+  }
+}
 
 /*
 La funzione resetTimer funziona in questa maniera:
@@ -317,8 +299,7 @@ function resetTimer() {
   timerSeconds = 30;
   reloadTimerHtml();
   timerSeconds--;
-  startTimer(); 
-  
+  startTimer();
 }
 
 /*
@@ -329,17 +310,17 @@ stabilisce un valore percentuale basandosi sul valore di timerSeconds nella vari
 tale valore servirà a stabilire la percentuale di riduzione della larghezza della progressBar.
 */
 function reloadTimerHtml() {
-  let orologio = document.getElementById('timerDiv');
-  if (timerSeconds > 9){
-    orologio.innerHTML=timerSeconds;
-  }else {
-    let stringNumber =`&nbsp;${timerSeconds}`;
-    orologio.innerHTML=stringNumber;
+  let orologio = document.getElementById("timerDiv");
+  if (timerSeconds > 9) {
+    orologio.innerHTML = timerSeconds;
+  } else {
+    let stringNumber = `&nbsp;${timerSeconds}`;
+    orologio.innerHTML = stringNumber;
   }
 
-  let progressBar = document.getElementById('progressBar');
+  let progressBar = document.getElementById("progressBar");
   let percentage = (timerSeconds / 30) * 100;
-  progressBar.style.width = percentage + '%';
+  progressBar.style.width = percentage + "%";
 
   donutTimer(timerSeconds);
 }
@@ -360,41 +341,42 @@ La funzione randomize:
    nella lunghezza dell'array temp, non potrà generare doppioni o numeri non compresi nell'array. 
 */
 function randomize() {
-  let tempIndex = temp.length
+  let tempIndex = temp.length;
   for (let i = 0; i < tempIndex; i++) {
     let randValue = Math.floor(Math.random() * temp.length);
     randomQuestions.push(temp[randValue]);
     temp.splice(randValue, 1);
-  } 
+  }
 }
 function donutTimer(timerSeconds) {
-  var avanzo = (30-timerSeconds);
+  var avanzo = 30 - timerSeconds;
   var xValues = ["Tempo rimanente", "Tempo passato"];
-  var yValues = [ avanzo,timerSeconds];
+  var yValues = [avanzo, timerSeconds];
   var barColors = ["#98699C", "#00FFFF"];
-
 
   new Chart("timerChart", {
     type: "doughnut",
     data: {
       labels: xValues,
-      datasets: [{
-        backgroundColor: barColors, 
-        borderColor: "rgba(0, 0, 0, 0)" , 
-        data: yValues ,
-      }]
+      datasets: [
+        {
+          backgroundColor: barColors,
+          borderColor: "rgba(0, 0, 0, 0)",
+          data: yValues,
+        },
+      ],
     },
     options: {
       title: { display: false },
-      cutoutPercentage: 75,                       // Adjust this value to set the size of the center hole
-      legend: {display : false},
-  
+      cutoutPercentage: 75, // Adjust this value to set the size of the center hole
+      legend: { display: false },
+
       animation: {
-       animateRotate: false, // Disabilita l'animazione di rotazione
-       animateScale: false,   // Disabilita l'animazione di scala
+        animateRotate: false, // Disabilita l'animazione di rotazione
+        animateScale: false, // Disabilita l'animazione di scala
       },
       events: [], // Disabilita completamente l'interazione al passaggio del mouse
-    }
+    },
   });
 }
 function donutChart(wrongAnswers, rightAnswers) {
@@ -402,24 +384,24 @@ function donutChart(wrongAnswers, rightAnswers) {
   var yValues = [wrongAnswers, rightAnswers];
   var barColors = ["#C2128D", "#00FFFF"];
 
-
   new Chart("resultChart", {
     type: "doughnut",
     data: {
       labels: xValues,
-      datasets: [{
-        backgroundColor: barColors, 
-        borderColor: "rgba(0, 0, 0, 0)" , 
-        data: yValues ,
-
-      }]
+      datasets: [
+        {
+          backgroundColor: barColors,
+          borderColor: "rgba(0, 0, 0, 0)",
+          data: yValues,
+        },
+      ],
     },
     options: {
       title: { display: false },
-      cutoutPercentage: 75,                       // Adjust this value to set the size of the center hole
-      legend: {display : false},
-      circumference : 2*Math.PI
-    }
+      cutoutPercentage: 75, // Adjust this value to set the size of the center hole
+      legend: { display: false },
+      circumference: 2 * Math.PI,
+    },
   });
 }
 /*
@@ -452,35 +434,33 @@ Infine la funzione onload (quando si carica la pagina):
 8) inizializza il timer.
 */
 window.onload = function () {
-  currentQuestion=0;
+  currentQuestion = 0;
   randomize();
   generateQuestions();
 
   timerSeconds = 30;
 
   donutTimer(timerSeconds);
-  let orologio = document.getElementById('timerDiv')
-  orologio.innerHTML=timerSeconds;
+  let orologio = document.getElementById("timerDiv");
+  orologio.innerHTML = timerSeconds;
 
   timerSeconds--;
   startTimer();
-  
 };
 
-  // TIPS:
+// TIPS:
 
-  // SE MOSTRI TUTTE LE RISPOSTE ASSIEME IN FORMATO LISTA:
-  // Per ogni domanda, crea un container e incorporale tutte all'interno. 
-  // Crea poi dei radio button
-  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
-  // con le risposte corrette e incorrette come opzioni
-  // (dovrai probabilmente cercare su un motore di ricerca come ottenere un valore da un radio button in JS per ottenere il punteggio finale) 
-  //
-  // SE MOSTRI UNA DOMANDA ALLA VOLTA:
-  // Mostra la prima domanda con il testo e i radio button.
-  // Quando l'utente seleziona una risposta, passa alla domanda successiva dell'array e sostituisci quella precedentemente visualizzata con quella corrente,
-  // salvando le risposte dell'utente in una variabile
-
+// SE MOSTRI TUTTE LE RISPOSTE ASSIEME IN FORMATO LISTA:
+// Per ogni domanda, crea un container e incorporale tutte all'interno.
+// Crea poi dei radio button
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
+// con le risposte corrette e incorrette come opzioni
+// (dovrai probabilmente cercare su un motore di ricerca come ottenere un valore da un radio button in JS per ottenere il punteggio finale)
+//
+// SE MOSTRI UNA DOMANDA ALLA VOLTA:
+// Mostra la prima domanda con il testo e i radio button.
+// Quando l'utente seleziona una risposta, passa alla domanda successiva dell'array e sostituisci quella precedentemente visualizzata con quella corrente,
+// salvando le risposte dell'utente in una variabile
 
 // Come calcolare il risultato? Hai due strade:
 // Se stai mostrando tutte le domande nello stesso momento, controlla semplicemente se i radio button selezionati sono === correct_answer
